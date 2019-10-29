@@ -19,7 +19,7 @@ import (
 	"github.com/kataras/iris"
 
 	_ "github.com/mattn/go-sqlite3"
-	md "github.com/russross/blackfriday"
+	md "github.com/russross/blackfriday/v2"
 )
 
 const mdTmpl = `<html>
