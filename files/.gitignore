@@ -1,4 +1,4 @@
 /_backup
 *.zip
 .cache
-/.mysync
+/_mysync
