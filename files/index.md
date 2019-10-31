@@ -12,8 +12,10 @@
 
 ### 我的成果：
 * [secret-diary安全日记本软件](secret-diary.md)
+* [mysync - 单向同步软件](mysync.md)
 * [markdown浏览器mdserv](mdserv.md)
 * [markdown阅读器mdview](mdview.md)
+* [MarkdownWeb - 用 markdown 文件制作静态网站](markdownweb.md)
 * [托盘化服务程序控制器](traycontroller.md)
 * ["海战炮手"游戏](shipgunner.md)
 * [pipeconn - 帮助go语言程序编写不依靠网络连接的rpc server/client](pipeconn.md)
@@ -21,4 +23,3 @@
 * [pluginloader - 简化go语言plugin函数和对象调用](pluginloader.md)
 * [rpc2d - go语言双向 RPC 调用的库](rpc2d.md)
 * [appimagelauncher - 帮助 appimage 程序把自己加入启动菜单](appimagelauncher.md)
-* [MarkdownWeb - 用 markdown 文件制作静态网站](markdownweb.md)

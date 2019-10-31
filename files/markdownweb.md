@@ -16,6 +16,10 @@ If there is an 'md.tpl' file in the directory (or sub directory), the template f
 
 It is allowed to display a group of rotation pictures. Use 'ad.json' to specify the picture list and the corresponding 'URL'. Refer to the matching method of 'md.tpl' and 'ad.js' in the example for the usage method.
 
+### 源代码地址
+- [github.com](https://github.com/rocket049/markdownweb)
+- [gitee.com](https://gitee.com/rocket049/markdownweb)
+
 ### 实例网站文件结构 ( Directory struct of the example web site )
 ```
 MarkdownWeb/
