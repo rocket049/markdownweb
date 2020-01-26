@@ -249,14 +249,16 @@ func main() {
 		logger.Printf("%s Get /\n", ctx.RemoteAddr())
 	})
 	if *tls == false {
-		app.Run(iris.Addr(*addr))
+		err := app.Run(iris.Addr(*addr))
+		log.Println(err)
 		return
 	}
 
 	runner, err := getTLSRunner()
 	if err != nil {
-		app.Run(iris.Addr(*addr))
+		log.Println(err)
 	} else {
-		app.Run(runner)
+		err = app.Run(runner)
+		log.Println(err)
 	}
 }
