@@ -3,3 +3,6 @@ markdownweb
 .cache
 mysync
 /files
+tls.json
+*.cert
+*.key
