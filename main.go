@@ -211,6 +211,7 @@ func adRedirect(ctx iris.Context) {
 
 func main() {
 	var addr = flag.String("addr", ":8080", "format [IP:Port]")
+	var tls = flag.Bool("tls", false, "use tls or not")
 	flag.Parse()
 
 	logger = log.New(os.Stdout, "", log.LstdFlags|log.Lshortfile)
@@ -247,6 +248,11 @@ func main() {
 		sendMarkdown(ctx, "index.md")
 		logger.Printf("%s Get /\n", ctx.RemoteAddr())
 	})
+	if *tls == false {
+		app.Run(iris.Addr(*addr))
+		return
+	}
+
 	runner, err := getTLSRunner()
 	if err != nil {
 		app.Run(iris.Addr(*addr))

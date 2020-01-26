@@ -31,5 +31,5 @@ func getTLSRunner() (iris.Runner, error) {
 	if err != nil {
 		return nil, err
 	}
-	return iris.AutoTLS(keys.Addr, keys.Cert, keys.Key), nil
+	return iris.TLS(keys.Addr, keys.Cert, keys.Key), nil
 }
