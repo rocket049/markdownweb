@@ -8,9 +8,9 @@ import (
 )
 
 type KeysTLS struct {
-	Addr   string `json:"addr"`
-	Domain string `json:"domain"`
-	Email  string `json:"email"`
+	Addr string `json:"addr"`
+	Cert string `json:"cert"`
+	Key  string `json:"key"`
 }
 
 func getTLSKeys() (*KeysTLS, error) {
@@ -31,5 +31,5 @@ func getTLSRunner() (iris.Runner, error) {
 	if err != nil {
 		return nil, err
 	}
-	return iris.AutoTLS(keys.Addr, keys.Domain, keys.Email), nil
+	return iris.AutoTLS(keys.Addr, keys.Cert, keys.Key), nil
 }

@@ -1,5 +1,5 @@
 {
-	"addr":":443",
-	"domain":"rocket049.cn",
-	"email":"fuhuizn@163.com"
+	"addr":":4430",
+	"cert":"my.cert",
+	"key":"my.key"
 }
