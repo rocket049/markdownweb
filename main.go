@@ -247,6 +247,10 @@ func main() {
 		sendMarkdown(ctx, "index.md")
 		logger.Printf("%s Get /\n", ctx.RemoteAddr())
 	})
-
-	app.Run(iris.Addr(*addr))
+	runner, err := getTLSRunner()
+	if err != nil {
+		app.Run(iris.Addr(*addr))
+	} else {
+		app.Run(runner)
+	}
 }

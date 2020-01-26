@@ -23,4 +23,5 @@
 * [pluginloader - 简化go语言plugin函数和对象调用](pluginloader.md)
 * [rpc2d - go语言双向 RPC 调用的库](rpc2d.md)
 * [appimagelauncher - 帮助 appimage 程序把自己加入启动菜单](appimagelauncher.md)
-* [小说](audios/list.htm)
+* [听小说《重生之魔教教主》](_audios/list.htm)
+* [本人提供人工智能语音合成服务](tts.md)
