@@ -95,7 +95,7 @@ func sendFile(ctx iris.Context, filename string) error {
 		for {
 			n, _ := fp.Read(buf[:])
 			if n > 0 {
-				ctx.Binary(buf[:n])
+				ctx.Write(buf[:n])
 			} else {
 				break
 			}
