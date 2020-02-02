@@ -85,7 +85,6 @@ func sendFile(ctx iris.Context, filename string) error {
 		return err
 	}
 	if strings.HasSuffix(filename, ".wasm") {
-		//ctx.ContentType("application/wasm")
 		w := ctx.ResponseWriter().Naive()
 		w.Header().Set("content-type", "application/wasm")
 		fp, err := os.Open(fname)
@@ -94,6 +93,7 @@ func sendFile(ctx iris.Context, filename string) error {
 		}
 		defer fp.Close()
 		var buf [1024]byte
+		w.WriteHeader(200)
 		for {
 			n, _ := fp.Read(buf[:])
 			if n > 0 {
