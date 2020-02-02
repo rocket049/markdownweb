@@ -103,7 +103,7 @@ func sendFile(ctx iris.Context, filename string) error {
 		}
 	} else {
 		ctx.Header("Content-Length", fmt.Sprint(info.Size()))
-		ctx.SendFile(fname, filename)
+		ctx.ServeFile(fname, ctx.ClientSupportsGzip())
 	}
 
 	return nil
@@ -252,7 +252,7 @@ func main() {
 			logger.Println(".tpl")
 			adRedirect(ctx)
 		} else {
-			err := ctx.ServeFile(relatePath("files", fn), ctx.ClientSupportsGzip())
+			err := sendFile(ctx, fn)
 			if err != nil {
 				logger.Printf("ERROR %s Get /%s\n", ctx.RemoteAddr(), fn)
 				adRedirect(ctx)
