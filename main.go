@@ -90,6 +90,7 @@ func sendFile(ctx iris.Context, filename string) error {
 			ctx.WriteNotModified()
 			return nil
 		}
+		ctx.SetLastModified(info.ModTime())
 		w := ctx.ResponseWriter().Naive()
 		w.Header().Set("Content-Type", "application/wasm")
 		fp, err := os.Open(fname)
