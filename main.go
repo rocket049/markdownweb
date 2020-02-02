@@ -88,14 +88,14 @@ func sendFile(ctx iris.Context, filename string) error {
 	ctx.Header("Content-Length", fmt.Sprint(info.Size()))
 	if strings.HasSuffix(filename, ".wasm") {
 		//ctx.Header("Content-Type", "application/wasm")
-		ctx.ContentType("application/wasm")
-		// fp, err := os.Open(fname)
-		// if err != nil {
-		// 	return err
-		// }
-		// defer fp.Close()
-		// ctx.StatusCode(200)
-		// io.Copy(ctx.ResponseWriter(), fp)
+		ctx.ContentType("application/wasm; binary")
+		fp, err := os.Open(fname)
+		if err != nil {
+			return err
+		}
+		defer fp.Close()
+		ctx.StatusCode(200)
+		io.Copy(ctx.ResponseWriter(), fp)
 	}
 	ctx.SendFile(fname, filename)
 
