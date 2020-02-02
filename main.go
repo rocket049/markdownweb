@@ -93,6 +93,7 @@ func sendFile(ctx iris.Context, filename string) error {
 			return err
 		}
 		defer fp.Close()
+		ctx.StatusCode(200)
 		io.Copy(ctx.ResponseWriter(), fp)
 	} else {
 		ctx.SendFile(fname, filename)
