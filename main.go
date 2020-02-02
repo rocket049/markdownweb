@@ -84,8 +84,6 @@ func sendFile(ctx iris.Context, filename string) error {
 		adRedirect(ctx)
 		return err
 	}
-
-	ctx.Header("Content-Length", fmt.Sprint(info.Size()))
 	if strings.HasSuffix(filename, ".wasm") {
 		ctx.ContentType("application/wasm")
 		fp, err := os.Open(fname)
@@ -93,7 +91,6 @@ func sendFile(ctx iris.Context, filename string) error {
 			return err
 		}
 		defer fp.Close()
-		ctx.StatusCode(200)
 		var buf [1024]byte
 		for {
 			n, _ := fp.Read(buf[:])
@@ -105,6 +102,7 @@ func sendFile(ctx iris.Context, filename string) error {
 		}
 
 	} else {
+		ctx.Header("Content-Length", fmt.Sprint(info.Size()))
 		ctx.SendFile(fname, filename)
 	}
 
