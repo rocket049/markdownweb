@@ -86,10 +86,12 @@ func sendFile(ctx iris.Context, filename string) error {
 	}
 
 	ctx.Header("Content-Length", fmt.Sprint(info.Size()))
-	if strings.HasSuffix(filename,".wasm") {
-		ctx.Header("Content-Type","application/wasm")
+	if strings.HasSuffix(filename, ".wasm") {
+		ctx.Header("Content-Type", "application/wasm")
+		ctx.ServeFile(fname, ctx.ClientSupportsGzip())
+	} else {
+		ctx.SendFile(fname, filename)
 	}
-	ctx.SendFile(fname, filename)
 	return nil
 }
 
