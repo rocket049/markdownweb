@@ -16,7 +16,7 @@ import (
 	"sync"
 	"text/template"
 
-	"github.com/kataras/iris"
+	iris "github.com/kataras/iris/v12"
 
 	_ "github.com/mattn/go-sqlite3"
 	md "github.com/russross/blackfriday/v2"
@@ -259,6 +259,7 @@ func main() {
 			logger.Println(".tpl")
 			adRedirect(ctx)
 		} else {
+			//err := ctx.ServeFile(relatePath("files", fn), ctx.ClientSupportsGzip())
 			err := sendFile(ctx, fn)
 			if err != nil {
 				logger.Printf("ERROR %s Get /%s\n", ctx.RemoteAddr(), fn)
