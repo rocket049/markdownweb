@@ -14,15 +14,15 @@ require (
 	github.com/iris-contrib/blackfriday v2.0.0+incompatible // indirect
 	github.com/iris-contrib/formBinder v5.0.0+incompatible // indirect
 	github.com/iris-contrib/go.uuid v2.0.0+incompatible // indirect
-	github.com/json-iterator/go v1.1.7 // indirect
-	github.com/kataras/golog v0.0.9 // indirect
+	github.com/json-iterator/go v1.1.9 // indirect
+	github.com/kataras/golog v0.0.10 // indirect
 	github.com/kataras/iris v11.1.1+incompatible
-	github.com/klauspost/compress v1.9.1 // indirect
-	github.com/mattn/go-sqlite3 v1.11.0
+	github.com/klauspost/compress v1.9.8 // indirect
+	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/microcosm-cc/bluemonday v1.0.2 // indirect
 	github.com/russross/blackfriday/v2 v2.0.1
 	github.com/ryanuber/columnize v2.1.0+incompatible // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
-	golang.org/x/crypto v0.0.0-20191029031824-8986dd9e96cf // indirect
-	gopkg.in/yaml.v2 v2.2.4 // indirect
+	golang.org/x/crypto v0.0.0-20200128174031-69ecbb4d6d5d // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
