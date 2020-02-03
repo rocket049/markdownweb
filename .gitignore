@@ -6,3 +6,4 @@ mysync
 tls.json
 *.cert
 *.key
+go.*
