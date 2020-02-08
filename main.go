@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -75,6 +74,7 @@ func getSize(filename string) int64 {
 	return fh.Size()
 }
 
+/*
 func sendFile(ctx iris.Context, filename string) error {
 	fname := relatePath("files", filename)
 	info, err := os.Stat(fname)
@@ -114,7 +114,7 @@ func sendFile(ctx iris.Context, filename string) error {
 	}
 
 	return nil
-}
+}*/
 
 func getTitle(p []byte) string {
 	n := bytes.IndexByte(p, '\n')
