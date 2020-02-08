@@ -259,8 +259,8 @@ func main() {
 			logger.Println(".tpl")
 			adRedirect(ctx)
 		} else {
-			//err := ctx.ServeFile(relatePath("files", fn), ctx.ClientSupportsGzip())
-			err := sendFile(ctx, fn)
+			err := ctx.ServeFile(relatePath("files", fn), ctx.ClientSupportsGzip())
+			//err := sendFile(ctx, fn)
 			if err != nil {
 				logger.Printf("ERROR %s Get /%s\n", ctx.RemoteAddr(), fn)
 				adRedirect(ctx)
