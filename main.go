@@ -236,7 +236,7 @@ func adRedirect(ctx iris.Context) {
 }
 
 func main() {
-	var addr = flag.String("addr", ":8080", "format [IP:Port]")
+	var addr = flag.String("addr", "127.0.0.1:8080", "format [IP:Port]")
 	var tls = flag.Bool("tls", false, "use tls or not")
 	flag.Parse()
 
