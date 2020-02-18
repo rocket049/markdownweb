@@ -14,6 +14,6 @@ func main() {
 		http.Redirect(w, r, url1, 301)
 		//log.Println(url1)
 	})
-	err := http.ListenAndServe("127.0.0.1:8080", nil)
+	err := http.ListenAndServe("127.0.0.1:8090", nil)
 	log.Println(err)
 }
