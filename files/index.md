@@ -25,3 +25,4 @@
 * [appimagelauncher - 帮助 appimage 程序把自己加入启动菜单](appimagelauncher.md)
 * [听小说《重生之魔教教主》](_audios/list.htm)
 * [本人提供人工智能语音合成服务](tts.md)
+* [`Ubuntu`安装`deepin-wine`](deepin-wine.md)
