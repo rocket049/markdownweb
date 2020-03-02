@@ -7,3 +7,4 @@ tls.json
 *.cert
 *.key
 go.*
+with-glibc*
