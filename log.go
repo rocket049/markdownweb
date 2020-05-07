@@ -9,7 +9,7 @@ import (
 /*
 create table if not exists log(path text UNIQUE,num int DEFAULT 0);
 insert into log(path,num) values('path1',1);
-update log set num=(select num from log where path='path1')+1 where path='path1';
+update log set num=(select num+1 from log where path='path1') where path='path1';
 */
 
 type MyDB struct {
@@ -44,7 +44,7 @@ func (p *MyDB) InsertPath(v string) bool {
 }
 
 func (p *MyDB) UpdatePathOnce(v string) {
-	p.db.Exec("update log set num=(select num from log where path=?)+1 where path=?;", v, v)
+	p.db.Exec("update log set num=(select num+1 from log where path=?) where path=?;", v, v)
 }
 
 func InsertOrUpdatePath(p string) {
