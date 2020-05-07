@@ -241,7 +241,6 @@ func main() {
 	var addr = flag.String("addr", "127.0.0.1:8080", "format [IP:Port]")
 	var tls = flag.Bool("tls", false, "use tls or not")
 	flag.Parse()
-	defer DbClose()
 
 	logger = log.New(os.Stdout, "", log.LstdFlags|log.Lshortfile)
 	adList, _ = getAdList()
