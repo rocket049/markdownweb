@@ -8,3 +8,4 @@ tls.json
 *.key
 go.*
 with-glibc*
+/data
