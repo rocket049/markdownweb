@@ -139,6 +139,8 @@ func sendMarkdown(ctx iris.Context, filename string) {
 		adRedirect(ctx)
 		return
 	}
+	//log
+	InsertOrUpdatePath(filename)
 
 	cacheName := filepath.Join(cacheDir, filepath.Base(filename)+".htm")
 	cacheStat, err := os.Stat(cacheName)

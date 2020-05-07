@@ -18,6 +18,7 @@
     </div>
   </div>
 </div>
+<div><a href="/">首页</a></div>
 {{.body}}
 <div style="background:#E8E7E3;padding:20px 0;">
   <div style="font-size:x-small;text-align:center">

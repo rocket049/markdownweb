@@ -26,3 +26,7 @@
 * [听小说《重生之魔教教主》](_audios/list.htm)
 * [本人提供人工智能语音合成服务](tts.md)
 * [`Ubuntu`安装`deepin-wine`](deepin-wine.md)
+* [go语言编译真正的静态可执行文件](static-go.md)
+* [局域网共享程序 - QtLanShare](qtlanshare.md)
+* [把命令行程序转变为图形界面程序的“超强命令”程序](super-run.md)
+* [在 ubuntu linux 上配置 go 语言的 qt 开发环境](go-qt.md)
