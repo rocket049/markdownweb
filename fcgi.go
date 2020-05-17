@@ -2,7 +2,6 @@ package main
 
 import (
 	"net"
-	"net/http"
 	"net/http/fcgi"
 
 	iris "github.com/kataras/iris/v12"
@@ -15,10 +14,10 @@ func runFcgi(handler *iris.Application, addr string) error {
 	}
 	defer listener.Close()
 	handler.Build()
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		logger.Println(r.URL.String())
-		handler.ServeHTTP(w, r)
-	})
-	err = fcgi.Serve(listener, nil)
+	//http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	//logger.Println(r.URL.String())
+	//handler.ServeHTTP(w, r)
+	//})
+	err = fcgi.Serve(listener, handler)
 	return err
 }
