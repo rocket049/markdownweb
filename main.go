@@ -240,7 +240,7 @@ func adRedirect(ctx iris.Context) {
 func main() {
 	var addr = flag.String("addr", "127.0.0.1:8080", "format [IP:Port]")
 	var tls = flag.Bool("tls", false, "use tls or not")
-	var fcgi = flag.Bool("fcgi", false, "run in fastcgi mode.")
+	var fcgi = flag.Bool("fcgi", false, "run in fastcgi mode. fcgi模式下 -tls 选项无效。")
 	flag.Parse()
 
 	logger = log.New(os.Stdout, "", log.LstdFlags|log.Lshortfile)
@@ -279,6 +279,12 @@ func main() {
 		logger.Printf("%s Get /\n", ctx.RemoteAddr())
 	})
 
+	if *fcgi == true {
+		logger.Println("fcgi start")
+		runFcgi(app, *addr)
+		return
+	}
+
 	if *tls == true {
 		runner, err := getTLSRunner()
 		if err != nil {
@@ -287,12 +293,6 @@ func main() {
 			err = app.Run(runner)
 			log.Println(err)
 		}
-		return
-	}
-
-	if *fcgi == true {
-		logger.Println("fcgi start")
-		runFcgi(app, *addr)
 		return
 	}
 
