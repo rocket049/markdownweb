@@ -29,9 +29,8 @@
  */
 
 body {
-font-family: Helvetica, Arial, Freesans, clean, sans-serif;
-padding:1em;
 margin:auto;
+text-align:center;
 max-width:42em;
 background:#fefefe;
 }
@@ -43,6 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     color: #000000;
     font-size: 28px;
+    text-align:center;
 }
 
 h2 {
@@ -76,8 +76,13 @@ hr {
     background-color: #CCCCCC;
 }
 
-p, blockquote, ul, ol, dl, li, table, pre {
+blockquote, ul, ol, dl, li, table, pre {
     margin: 15px 0;
+}
+
+p {
+	margin: 15px 0;
+	text-indent: 2em;
 }
 
 code, pre {

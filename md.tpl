@@ -18,7 +18,9 @@
   </div>
  </div>
 </div>
+<div style='text-align:left;'>
 {{.body}}
+</div>
 <div style="background:#E8E7E3;padding:20px 0;">
   <div style="font-size:x-small;text-align:center">备案号：<a target="_blank" href="http://beian.miit.gov.cn">苏ICP备19034936号</a> &nbsp;&nbsp; 站长邮箱：fuhuizn@163.com&nbsp;&nbsp; 版权所有</div>
   <div style="width:300px;margin:0 auto;font-size:x-small;">

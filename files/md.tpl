@@ -19,7 +19,9 @@
   </div>
 </div>
 <div><a href="/">首页</a></div>
+<div style='text-align:left;'>
 {{.body}}
+</div>
 <div style="background:#E8E7E3;padding:20px 0;">
   <div style="font-size:x-small;text-align:center">
 	备案号：<a target="_blank" href="http://beian.miit.gov.cn">苏ICP备19034936号</a>/
