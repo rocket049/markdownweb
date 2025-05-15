@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -74,48 +75,6 @@ func getSize(filename string) int64 {
 	return fh.Size()
 }
 
-/*
-func sendFile(ctx iris.Context, filename string) error {
-	fname := relatePath("files", filename)
-	info, err := os.Stat(fname)
-	if err != nil {
-		//ctx.StatusCode(404)
-		logger.Println(err)
-		adRedirect(ctx)
-		return err
-	}
-	if strings.HasSuffix(filename, ".wasm") {
-		m, err := ctx.CheckIfModifiedSince(info.ModTime())
-		if !m && err == nil {
-			ctx.WriteNotModified()
-			return nil
-		}
-		ctx.SetLastModified(info.ModTime())
-		w := ctx.ResponseWriter().Naive()
-		w.Header().Set("Content-Type", "application/wasm")
-		fp, err := os.Open(fname)
-		if err != nil {
-			return err
-		}
-		defer fp.Close()
-
-		var buf [1024]byte
-		for {
-			n, _ := fp.Read(buf[:])
-			if n > 0 {
-				w.Write(buf[:n])
-			} else {
-				break
-			}
-		}
-	} else {
-		ctx.Header("Content-Length", fmt.Sprint(info.Size()))
-		ctx.ServeFile(fname, ctx.ClientSupportsGzip())
-	}
-
-	return nil
-}*/
-
 func getTitle(p []byte) string {
 	n := bytes.IndexByte(p, '\n')
 	if n <= 0 {
@@ -123,6 +82,12 @@ func getTitle(p []byte) string {
 	}
 	line1 := string(p[0:n])
 	return strings.Trim(line1, "# \n\r\t")
+}
+
+func match_etag(ctx iris.Context, info os.FileInfo) bool {
+	var my_etag string = fmt.Sprintf("%d", info.ModTime().Unix())
+	//println(ctx.GetHeader("if-none-match"), my_etag)
+	return ctx.GetHeader("if-none-match") == my_etag && ctx.GetHeader("cache-control") != "max-age=0"
 }
 
 func sendMarkdown(ctx iris.Context, filename string) {
@@ -139,6 +104,14 @@ func sendMarkdown(ctx iris.Context, filename string) {
 		adRedirect(ctx)
 		return
 	}
+
+	if match_etag(ctx, fstat) {
+		//println("Not Modified")
+		ctx.StatusCode(304)
+		return
+	}
+	ctx.Header("ETag", fmt.Sprintf("%d", fstat.ModTime().Unix()))
+
 	//log
 	InsertOrUpdatePath(filename)
 
@@ -262,7 +235,24 @@ func main() {
 			logger.Println(".tpl")
 			adRedirect(ctx)
 		} else {
-			err := ctx.ServeFile(relatePath("files", fn), ctx.ClientSupportsGzip())
+			fname := relatePath("files", fn)
+
+			fstat, err := os.Lstat(fname)
+			if err != nil {
+				//ctx.StatusCode(404)
+				logger.Println(err)
+				adRedirect(ctx)
+				return
+			}
+
+			if match_etag(ctx, fstat) {
+				//println("Not Modified")
+				ctx.StatusCode(304)
+				return
+			}
+			ctx.Header("ETag", fmt.Sprintf("%d", fstat.ModTime().Unix()))
+
+			err = ctx.ServeFile(relatePath("files", fn), ctx.ClientSupportsGzip())
 			//err := sendFile(ctx, fn)
 			if err != nil {
 				logger.Printf("ERROR %s Get /%s\n", ctx.RemoteAddr(), fn)
@@ -279,13 +269,13 @@ func main() {
 		logger.Printf("%s Get /\n", ctx.RemoteAddr())
 	})
 
-	if *fcgi == true {
+	if *fcgi {
 		logger.Println("fcgi start")
 		runFcgi(app, *addr)
 		return
 	}
 
-	if *tls == true {
+	if *tls {
 		runner, err := getTLSRunner()
 		if err != nil {
 			log.Println(err)
